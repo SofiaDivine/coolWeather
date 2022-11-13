@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Tanchuk Sofia</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+      crossorigin="anonymous"
+    />
+  </head>
+  <style>
+    body {
+      background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/053/362/original/hogwarts-3476786_1280.png?1668341993");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: rgba(225, 208, 17, 0.274);
+    }
+    .app {
+      display: block;
+      margin: 0 auto;
+      position: relative;
+      top: 50px;
+      max-width: 45%;
+      background-color: rgba(219, 198, 35, 0.589);
+      color: rgb(63, 31, 18);
+      box-shadow: 4px 5px 15px 8px rgba(196, 155, 101, 0.76);
+      border-radius: 10px;
+    }
+    .Weather {
+      background-clip: border-box;
+      background-origin: padding-box;
+      background-position-x: 0%;
+      background-position-y: 0%;
+      max-width: 70%;
+      background-size: 90%;
+      border-radius: 16px;
+      box-shadow: rgb(44, 76, 116) 10px 40px 30px 10px;
+      box-sizing: border-box;
+      color: rgb(21, 40, 91);
+
+      display: block;
+      margin: 0 auto;
+      font-size: 18px;
+      font-weight: 400;
+      height: 861px;
+      line-height: 24px;
+      padding: 20px;
+      text-align: start;
+      text-size-adjust: 100%;
+    }
+    .WeatherInfo {
+      box-sizing: border-box;
+
+      display: block;
+
+      font-size: 18px;
+
+      height: 306px;
+
+      margin-top: 20px;
+    }
+    .blur {
+      backdrop-filter: blur(0.7px);
+
+      font-size: 30px;
+    }
+    .temp {
+      box-sizing: border-box;
+      font-size: 38px;
+      line-height: 55px;
+      text-align: center;
+      display: block;
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-top: 30px;
+      max-width: 40%;
+      padding: 18px;
+      text-size-adjust: 100%;
+      width: 306.667px;
+      background-color: rgba(30, 83, 126, 0.194);
+      border-radius: 16px;
+    }
+
+    .WeatherForecast {
+      line-height: 30px;
+      width: 100%;
+      font-size: 24px;
+      color: rgb(20, 41, 86);
+      background: rgba(215, 209, 148, 0.683);
+      padding: 40px;
+      padding-right: 7px;
+      border-radius: 15px;
+      margin: 10px 1px;
+      box-shadow: rgba(21, 40, 91, 0.642) 10px 10px;
+    }
+
+    h1 {
+      margin-left: 40px;
+      padding-left: 10px;
+      padding-bottom: 5px;
+      text-align: start;
+      background-color: rgba(30, 83, 126, 0.194);
+      border-radius: 16px;
+    }
+    .locationNow {
+      color: rgb(21, 40, 91);
+      float: left;
+      background-color: transparent;
+      border-color: transparent;
+      padding: 5px;
+      font-size: 32px;
+      cursor: pointer;
+    }
+    .locationNow:hover {
+      color: rgba(196, 155, 101, 0.76);
+      background-color: rgb(21, 40, 91);
+    }
+    .change-day {
+      padding-left: 10px;
+      font-size: 20px;
+      text-align: start;
+      margin-left: 10px;
+      list-style: none;
+      background-color: rgba(215, 209, 148, 0.683);
+      border-radius: 16px;
+    }
+    .current-weather {
+      font-size: 38px;
+    }
+
+    .precipitations {
+      text-align: center;
+      list-style: none;
+      margin-top: 70px;
+      margin-left: 10px;
+      background-color: rgba(215, 209, 148, 0.683);
+      border-radius: 8px;
+      box-shadow: rgba(21, 40, 91, 0.642) 10px 10px;
+    }
+    .link {
+      text-align: center;
+    }
+    .myLink {
+      color: rgba(214, 204, 98, 0.683);
+    }
+    .myLink:hover {
+      color: rgb(53, 106, 171);
+    }
+    .myName {
+      color: rgba(215, 209, 148, 0.683);
+    }
+    input[type="search"] {
+      background-color: rgba(30, 83, 126, 0.195);
+      border: 2px solid rgba(21, 40, 91);
+      border-radius: 10px;
+    }
+    input[type="search"]:focus {
+      color: rgb(255, 241, 159);
+      background-color: rgba(41, 68, 143, 0.632);
+    }
+    input[type="submit"] {
+      border-radius: 10px;
+      color: rgb(255, 241, 159);
+      background-color: rgba(30, 83, 126, 0.495);
+      border: 2px solid rgba(21, 40, 91);
+    }
+  </style>
+
+      <div class="App">
+        <div class="container">
+          <div class="Weather">
+            <form>
+              <div class="row">
+                <div class="col-9">
+                  <input
+                    type="search"
+                    id="searching"
+                    placeholder="Search for a magical city.. ✨"
+                    class="form-control search-input"
+                  />
+                </div>
+                <div class="col-3 p-0">
+                  <input
+                    type="submit"
+                    class="btn btn-primary w-100"
+                    value="Search🪄"
+                  />
+                </div>
+              </div>
+            </form>
+
+            <div class="blur">
+              <div class="WeatherInfo">
+                <div class="row">
+                  <div class="col-6" id="locationId">
+                    <button class="locationNow" id="location-search"></button>
+                    <h1>Hogwarts</h1>
+
+                    <ul>
+                      <li class="change-day">
+                        <span id="currentTime">Sunday 12:48</span>,
+                        <span id="air"> few clouds </span>
+                      </li>
+                      <br />
+                      <div class="precipitations">
+                        <li class="Humidity" id="tears">
+                          Mysterious Tears: <strong>84%</strong>
+                        </li>
+                        <br />
+                        <li class="Wind" id="fairy">
+                          Fairy Wind:
+                          <strong>2.06km/h</strong>
+                        </li>
+                      </div>
+                    </ul>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-8">
+                    <div
+                      class="temperature-container d-flex justify-content-end"
+                    >
+                      <div class="temp">
+                        <div class="currentWeather">
+                          <span class="temperature" id="currentTemp">9</span
+                          ><span class="unit">°C</span>
+                          <br />
+                          <span class="current-weather"> ⛅ </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="WeatherForecast row">
+              <div class="col">
+                <div class="WeatherForecastPreview">
+                  <div class="forecast-time">Thu</div>
+                  <div class="forecast-emoji">&#9925;</div>
+                  <div class="forecast-temperature">
+                    <span class="forecast-temperature-max">13° /</span>
+                    <span class="forecast-temperature-min">9°</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="WeatherForecastPreview">
+                  <div class="forecast-time">Fri</div>
+                  <div class="forecast-emoji">&#9728;</div>
+
+                  <div class="forecast-temperature">
+                    <span class="forecast-temperature-max">13°/</span>
+                    <span class="forecast-temperature-min">10°</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col">
+                <div class="WeatherForecastPreview">
+                  <div class="forecast-time">Sat</div>
+                  <div class="forecast-emoji">&#9729;</div>
+                  <div class="forecast-temperature">
+                    <span class="forecast-temperature-max">13°/</span
+                    ><span class="forecast-temperature-min">11°</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="WeatherForecastPreview">
+                  <div class="forecast-time">Sun</div>
+                  <div class="forecast-emoji">&#127780;</div>
+                  <div class="forecast-temperature">
+                    <span class="forecast-temperature-max">13°/</span
+                    ><span class="forecast-temperature-min">9°</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <div class="WeatherForecastPreview">
+                  <div class="forecast-time">Mon</div>
+                  <div class="forecast-emoji">&#127783;</div>
+                  <div class="forecast-temperature">
+                    <span class="forecast-temperature-max">14°/</span
+                    ><span class="forecast-temperature-min">9°</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <footer class="link">
+              <a
+                class="myLink"
+                href="https://github.com/SofiaDivine"
+                target="_blank"
+              >
+                Open-Source code
+              </a>
+              <span class="myName">by Sofia Tanchuk</span>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let nowDate = new Date();
+      let nowTime = document.querySelector("#currentTime");
+      let nowHour = nowDate.getHours();
+      if (nowHour < 10) {
+        nowHour = `0&{nowHour}`;
+      }
+      let nowMinutes = nowDate.getMinutes();
+      if (nowMinutes < 10) {
+        nowMinutes = "0" + nowMinutes;
+      }
+      let days = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ];
+      let day = days[nowDate.getDay()];
+
+      nowTime.innerHTML = day + " ," + nowHour + ":" + nowMinutes;
+
+      function showTempWeather(response) {
+        console.log(response.data);
+        document.querySelector("#locationId").innerHTML = response.data.name;
+        document.querySelector("#currentTemp").innerHTML =
+          Math.round(response.data.main.temp) + "°";
+        document.querySelector("#air").innerHTML =
+          response.data.weather[0].main;
+        document.querySelector("#tears").innerHTML =
+          "Dragon tears: " + response.data.main.humidity + "%";
+        document.querySelector("#fairy").innerHTML =
+          "Fairy wind: " + Math.round(response.data.wind.speed) + "km/h";
+      }
+
+      function cityNewSearch(city) {
+        let apiKey = "2bd326a60dc89a53287e446e819664df";
+        let units = "metric";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+        axios.get(apiUrl).then(showTempWeather);
+      }
+      function citySubmit(event) {
+        event.preventDefault();
+        let city = document.querySelector("#searching").value;
+        cityNewSearch(city);
+      }
+
+      let searchCitySubmit = document.querySelector("form");
+      searchCitySubmit.addEventListener("submit", citySubmit);
+
+      function clickDegreeC(event) {
+        event.preventDefault();
+        let clickTemp = document.querySelector("#currentTemp");
+        clickTemp.innerHTML = "17°C";
+      }
+
+      function clickDegreeF(event) {
+        event.preventDefault();
+        let clickTemp = document.querySelector("#currentTemp");
+        clickTemp.innerHTML = "63°F";
+      }
+
+      let clickC = document.querySelector("#degreeC");
+      clickC.addEventListener("click", clickDegreeC);
+
+      let clickF = document.querySelector("#degreeF");
+      clickF.addEventListener("click", clickDegreeF);
+
+      function showWeather(response) {
+        console.log(response.data);
+        let city = document.querySelector("#locationId");
+        city.innerHTML = response.data.name;
+        let temp = document.querySelector("#currentTemp");
+        temp.innerHTML = Math.round(response.data.main.temp) + "C";
+        let air = document.querySelector("#air");
+        air.innerHTML = response.data.weather[0].main;
+        let humidityTears = document.querySelector("#tears");
+        humidityTears.innerHTML =
+          "Mysterious humidity: " + response.data.main.humidity + "%";
+        let wind = document.querySelector("#fairy");
+        let showWind = Math.round(response.data.wind.speed);
+        wind.innerHTML = "Fairy wind: " + showWind + "km/h";
+      }
+
+      function lookCurrentLocation(position) {
+        let lat = position.coords.latitude;
+        let lon = position.coords.longitude;
+        let apiKey = "2bd326a60dc89a53287e446e819664df";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+        axios.get(apiUrl).then(showWeather);
+      }
+      function getCurrentLocation(event) {
+        event.preventDefault();
+        navigator.geolocation.getCurrentPosition(lookCurrentLocation);
+      }
+
+      let currentLocationButton = document.querySelector("#location-search");
+      currentLocationButton.addEventListener("click", getCurrentLocation);
+    </script>
+  </body>
+</html>
