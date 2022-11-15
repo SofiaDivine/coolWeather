@@ -19,13 +19,14 @@ let days = [
 ];
 let day = days[nowDate.getDay()];
 
-nowTime.innerHTML = day + " ," + nowHour + ":" + nowMinutes;
+nowTime.innerHTML = day + ", " + nowHour + ":" + nowMinutes;
 
 function showTempWeather(response) {
   console.log(response.data);
   document.querySelector("#locationId").innerHTML = response.data.name;
-  document.querySelector("#currentTemp").innerHTML =
-    Math.round(response.data.main.temp) + "°";
+  document.querySelector("#currentTemp").innerHTML = Math.round(
+    response.data.main.temp
+  );
   document.querySelector("#air").innerHTML = response.data.weather[0].main;
   document.querySelector("#tears").innerHTML =
     "Dragon tears: " + response.data.main.humidity + "%";
@@ -48,30 +49,12 @@ function citySubmit(event) {
 let searchCitySubmit = document.querySelector("form");
 searchCitySubmit.addEventListener("submit", citySubmit);
 
-function clickDegreeC(event) {
-  event.preventDefault();
-  let clickTemp = document.querySelector("#currentTemp");
-  clickTemp.innerHTML = "17°C";
-}
-
-function clickDegreeF(event) {
-  event.preventDefault();
-  let clickTemp = document.querySelector("#currentTemp");
-  clickTemp.innerHTML = "63°F";
-}
-
-let clickC = document.querySelector("#degreeC");
-clickC.addEventListener("click", clickDegreeC);
-
-let clickF = document.querySelector("#degreeF");
-clickF.addEventListener("click", clickDegreeF);
-
 function showWeather(response) {
   console.log(response.data);
   let city = document.querySelector("#locationId");
   city.innerHTML = response.data.name;
   let temp = document.querySelector("#currentTemp");
-  temp.innerHTML = Math.round(response.data.main.temp) + "C";
+  temp.innerHTML = Math.round(response.data.main.temp);
   let air = document.querySelector("#air");
   air.innerHTML = response.data.weather[0].main;
   let humidityTears = document.querySelector("#tears");
