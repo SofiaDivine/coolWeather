@@ -90,6 +90,8 @@ function displayF(event) {
   let temperatureElement = document.querySelector("#temperatureMatt");
   let tempF = (celTemp * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(tempF);
+  linkC.classList.remove("active");
+  linkF.classList.add("active");
 }
 let celTemp = null;
 
@@ -100,6 +102,8 @@ function displayC(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperatureMatt");
   temperatureElement.innerHTML = Math.round(celTemp);
+  linkF.classList.remove("active");
+  linkC.classList.add("active");
 }
 
 let linkC = document.querySelector("#degreeC");

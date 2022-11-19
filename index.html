@@ -176,18 +176,14 @@
       color: rgb(20, 41, 86);
       display: inline;
     }
-    .cTemp {
+    .active {
       color: rgb(21, 40, 91);
+      cursor: default;
     }
-      .fTemp {
-      color: rgb(21, 40, 91);
+    .active:hover {
+text-decoration: none;
     }
-    .cTemp:hover {
-      color: rgb(32, 69, 150);
-    }
-    .fTemp:hover {
-      color: rgb(32, 69, 150);
-    }
+    
   </style>
 
       <div class="App">
@@ -247,7 +243,7 @@
                         
                           <strong id="temperatureMatt">9°</strong>
                           <br>
-                          <div class="units"> <a href="@" class="cTemp" id="degreeC">°C</a> | <a href="#" class="fTemp" id="degreeF">°F</a> </div>
+                          <div class="units"> <a href="@" class="active" id="degreeC">°C</a> | <a href="#" class="fTemp" id="degreeF">°F</a> </div>
                           <br />
                          <img class="current-weather" id="icon" />
                         </div>
