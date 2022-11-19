@@ -25,7 +25,7 @@ function showTempWeather(response) {
   console.log(response.data);
   document.querySelector("#locationId").innerHTML = response.data.city;
   celTemp = response.data.temperature.current;
-  document.querySelector("#currentTemp").innerHTML = Math.round(celTemp);
+  document.querySelector("#temperatureMatt").innerHTML = Math.round(celTemp);
   document.querySelector("#air").innerHTML =
     response.data.condition.description;
   document.querySelector("#tears").innerHTML =
@@ -58,7 +58,7 @@ function showWeather(response) {
   console.log(response.data);
   let city = document.querySelector("#locationId");
   city.innerHTML = response.data.city;
-  let temp = document.querySelector("#currentTemp");
+  let temp = document.querySelector("#temperatureMatt");
   temp.innerHTML = Math.round(response.data.temperature.current);
   let air = document.querySelector("#air");
   air.innerHTML = response.data.condition.description;
