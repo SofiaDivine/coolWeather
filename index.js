@@ -24,9 +24,8 @@ nowTime.innerHTML = day + ", " + nowHour + ":" + nowMinutes;
 function showTempWeather(response) {
   console.log(response.data);
   document.querySelector("#locationId").innerHTML = response.data.city;
-  document.querySelector("#currentTemp").innerHTML = Math.round(
-    response.data.temperature.current
-  );
+  celTemp = response.data.temperature.current;
+  document.querySelector("#currentTemp").innerHTML = Math.round(celTemp);
   document.querySelector("#air").innerHTML =
     response.data.condition.description;
   document.querySelector("#tears").innerHTML =
@@ -85,3 +84,14 @@ function getCurrentLocation(event) {
 
 let currentLocationButton = document.querySelector("#location-search");
 currentLocationButton.addEventListener("click", getCurrentLocation);
+
+function displayF(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperatureMatt");
+  let tempF = (celTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(tempF);
+}
+let celTemp = null;
+
+let linkF = document.querySelector("#degreeF");
+linkF.addEventListener("click", displayF);
