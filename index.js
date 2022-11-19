@@ -95,3 +95,12 @@ let celTemp = null;
 
 let linkF = document.querySelector("#degreeF");
 linkF.addEventListener("click", displayF);
+
+function displayC(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperatureMatt");
+  temperatureElement.innerHTML = Math.round(celTemp);
+}
+
+let linkC = document.querySelector("#degreeC");
+linkC.addEventListener("click", displayC);
