@@ -2,7 +2,7 @@ let nowDate = new Date();
 let nowTime = document.querySelector("#currentTime");
 let nowHour = nowDate.getHours();
 if (nowHour < 10) {
-  nowHour = `0&{nowHour}`;
+  nowHour = `0${nowHour}`;
 }
 let nowMinutes = nowDate.getMinutes();
 if (nowMinutes < 10) {
@@ -72,11 +72,11 @@ function showWeather(response) {
 }
 
 function lookCurrentLocation(position) {
-  let lat = position.coordinates.latitude;
-  let lon = position.coordinates.longitude;
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
   let apiKey = "5c3b44fd3211f47fodb530a25ba78e2t";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${lon}&lat=${lat}&key=${apiKey}`;
-  axios.get(apiUrl).then(showWeather);
+  axios.get(apiUrl).then(showTempWeather);
 }
 function getCurrentLocation(event) {
   event.preventDefault();
