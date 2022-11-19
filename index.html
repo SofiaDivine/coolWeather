@@ -173,7 +173,20 @@
     }
     .units {
       font-size: 24px;
+      color: rgb(20, 41, 86);
+      display: inline;
+    }
+    .cTemp {
       color: rgba(214, 204, 98, 0.683);
+    }
+      .fTemp {
+      color: rgba(214, 204, 98, 0.683);
+    }
+    .cTemp:hover {
+      color: rgb(20, 41, 86);
+    }
+    .fTemp:hover {
+      color: rgb(20, 41, 86);
     }
   </style>
 
@@ -233,7 +246,7 @@
                         <div class="currentWeather">
                         
                           <strong id="temperatureMatt">9°</strong>
-                          <span class="units"> <a href="@" id="degreeC">°C</a> | <a href="#" id="degreeF">°F</a> </span>
+                          <span class="units"> <a href="@" class="cTemp" id="degreeC">°C</a> | <a href="#" class="fTemp" id="degreeF">°F</a> </span>
                           <br />
                          <img class="current-weather" id="icon" />
                         </div>
