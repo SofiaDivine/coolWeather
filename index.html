@@ -86,18 +86,16 @@
       background-color: rgba(30, 83, 126, 0.194);
       border-radius: 16px;
     }
-
-    .WeatherForecast {
-      line-height: 30px;
+ .weather-forecast {
+      line-height: 10px;
       width: 100%;
-      font-size: 24px;
+      font-size: 22px;
       color: rgb(20, 41, 86);
       background: rgba(215, 209, 148, 0.683);
-      padding: 40px;
-      padding-right: 7px;
-      border-radius: 15px;
-      margin: 10px 1px;
+      padding: 20px;
       box-shadow: rgba(21, 40, 91, 0.642) 10px 10px;
+      border-radius: 16px;
+      text-align: center;
     }
 
     h1 {
@@ -183,14 +181,12 @@
       text-decoration: none;
     }
     .active:hover {
-text-decoration: none;
+     text-decoration: none;
     }
     .fTemp {
       text-decoration: none ;
     }
-    
   </style>
-
       <div class="App">
         <div class="container">
           <div class="Weather">
@@ -258,60 +254,9 @@ text-decoration: none;
                 </div>
               </div>
             </div>
-            <div class="WeatherForecast row">
-              <div class="col">
-                <div class="WeatherForecastPreview">
-                  <div class="forecast-time">Thu</div>
-                  <div class="forecast-emoji">&#9925;</div>
-                  <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">13° /</span>
-                    <span class="forecast-temperature-min">9°</span>
-                  </div>
-                </div>
+  <div class="weather-forecast" id="forecast">
               </div>
-              <div class="col">
-                <div class="WeatherForecastPreview">
-                  <div class="forecast-time">Fri</div>
-                  <div class="forecast-emoji">&#9728;</div>
-
-                  <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">13°/</span>
-                    <span class="forecast-temperature-min">10°</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <div class="WeatherForecastPreview">
-                  <div class="forecast-time">Sat</div>
-                  <div class="forecast-emoji">&#9729;</div>
-                  <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">13°/</span
-                    ><span class="forecast-temperature-min">11°</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="WeatherForecastPreview">
-                  <div class="forecast-time">Sun</div>
-                  <div class="forecast-emoji">&#127780;</div>
-                  <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">13°/</span
-                    ><span class="forecast-temperature-min">9°</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="WeatherForecastPreview">
-                  <div class="forecast-time">Mon</div>
-                  <div class="forecast-emoji">&#127783;</div>
-                  <div class="forecast-temperature">
-                    <span class="forecast-temperature-max">14°/</span
-                    ><span class="forecast-temperature-min">9°</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <br>
             <footer class="link">
               <a
                 class="myLink"
@@ -326,10 +271,8 @@ text-decoration: none;
         </div>
       </div>
     </div>
-
+  <script src="index.js" > 
+</script>
     
-  <script src="index.js"></script>
-     
-
   </body>
 </html>
