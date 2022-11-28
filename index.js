@@ -49,7 +49,7 @@ function displayForecast(response) {
         <div class="weather-forecast-temperatures">
           <span class="weather-forecast-temperature-max"> <strong> ${Math.round(
             forecastDay.temp.max
-          )}° </strong> </span>
+          )}° </strong>/ </span>
           <span class="weather-forecast-temperature-min"> ${Math.round(
             forecastDay.temp.min
           )}° </span>
@@ -70,7 +70,8 @@ function showTempWeather(response) {
   console.log(response.data);
   document.querySelector("#locationId").innerHTML = response.data.city;
   celTemp = response.data.temperature.current;
-  document.querySelector("#temperatureMatt").innerHTML = Math.round(celTemp);
+  document.querySelector("#temperatureMatt").innerHTML =
+    Math.round(celTemp) + "°";
   document.querySelector("#air").innerHTML =
     response.data.condition.description;
   document.querySelector("#tears").innerHTML =
@@ -132,3 +133,5 @@ function displayC(event) {
 }
 let linkC = document.querySelector("#degreeC");
 linkC.addEventListener("click", displayC);
+
+search("Kyiv");
