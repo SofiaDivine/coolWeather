@@ -20,6 +20,13 @@ let days = [
 let day = days[nowDate.getDay()];
 nowTime.innerHTML = day + ", " + nowHour + ":" + nowMinutes;
 
+function formatDay(timesTemp) {
+  let date = new Date(timesTemp * 1000);
+  let day = getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 function displayForecast(response) {
   console.log(response);
   let forecastElement = document.querySelector("#forecast");
@@ -31,7 +38,7 @@ function displayForecast(response) {
         forecastHTML +
         `
       <div class="col-2">
-<div class="weather-forecast-date">${forecastDay.dt}</div>
+<div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
         <img
           src="http://openweathermap.org/img/wn/${
             forecastDay.weather[0].icon
