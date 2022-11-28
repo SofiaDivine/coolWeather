@@ -22,7 +22,7 @@ nowTime.innerHTML = day + ", " + nowHour + ":" + nowMinutes;
 
 function formatDay(timesTemp) {
   let date = new Date(timesTemp * 1000);
-  let day = getDay();
+  let day = date.getDay();
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
 }
