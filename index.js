@@ -32,26 +32,25 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   let forecast = response.data.daily;
   let forecastHTML = ` <div class="row"> `;
+
   forecast.forEach(function (forecastDay, index) {
     if (index < 6) {
       forecastHTML =
         forecastHTML +
         `
       <div class="col-2">
-<div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+<div class="weather-forecast-date">${formatDay(forecastDay.time * 1000)}</div>
         <img
-          src="http://openweathermap.org/img/wn/${
-            forecastDay.weather[0].icon
-          }@2x.png"
+          src="${forecastDay.condition.icon_url}"
           alt=""
           width="50"
         />
         <div class="weather-forecast-temperatures">
           <span class="weather-forecast-temperature-max"> <strong> ${Math.round(
-            forecastDay.temp.max
+            forecastDay.temperature.maximum
           )}° </strong>/ </span>
           <span class="weather-forecast-temperature-min"> ${Math.round(
-            forecastDay.temp.min
+            forecastDay.temperature.minimum
           )}° </span>
         </div>
       </div>
@@ -62,8 +61,8 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 function getForecast(coordinates) {
-  let apiKey = "c5f0e59acac64258bb92ed027d20c68f";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${apiKey}&units=metric`;
+  let apiKey = "7eo5ded69c3ffa8b7taebbf0b44b9fb2";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
 function showTempWeather(response) {
@@ -134,4 +133,4 @@ function displayC(event) {
 let linkC = document.querySelector("#degreeC");
 linkC.addEventListener("click", displayC);
 
-search("Kyiv");
+cityNewSearch("Kyiv");
